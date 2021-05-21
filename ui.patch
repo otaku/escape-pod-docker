@@ -1,0 +1,39 @@
+diff -Naur ignore/ui-original/webpack.js ui/webpack.js
+--- ignore/ui-original/webpack.js	2021-05-20 17:53:09.745683925 -0700
++++ ui/webpack.js	2021-05-21 12:25:26.058923306 -0700
+@@ -59105,7 +59105,7 @@
+ // CONCATENATED MODULE: ./helpers/loader/loader.js
+ 
+ 
+-var baseDomainUrl = "escapepod.local";
++var baseDomainUrl = window.location.host;
+ function getBaseURL(_ref) {
+   var requestPath = _ref.requestPath,
+       _ref$https = _ref.https,
+@@ -59304,7 +59304,7 @@
+   });
+ };
+ var vectorDownloadStatus = function vectorDownloadStatus(onMessage, onError) {
+-  var socket = new WebSocket('ws://escapepod.local/downloadstatus'); // Listen for messages
++  var socket = new WebSocket('ws://' + window.location.host + '/downloadstatus'); // Listen for messages
+ 
+   socket.addEventListener('message', onMessage); // respond to errors
+ 
+@@ -59474,7 +59474,7 @@
+           successCB: function successCB(data) {
+             var fileNames = data.names;
+             var latestFile = fileNames[fileNames.length - 1];
+-            var fileURL = "http://escapepod.local/logs/" + latestFile;
++            var fileURL = "http://" + window.location.host + "/logs/" + latestFile;
+             download_executeURLFileDownload(fileURL, latestFile);
+             onCompleteCB();
+           },
+@@ -62195,7 +62195,7 @@
+   }, {
+     key: "openSocket",
+     value: function openSocket() {
+-      var socket = new WebSocket('ws://escapepod.local/logs'); // Connection opened
++      var socket = new WebSocket('ws://' + window.location.host + '/logs'); // Connection opened
+       // socket.addEventListener('open', function (event) {
+       //     socket.send('Hello Server!');
+       // });
